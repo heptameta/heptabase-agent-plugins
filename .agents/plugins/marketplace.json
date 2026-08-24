@@ -1,0 +1,20 @@
+{
+  "name": "heptabase-agent-plugins",
+  "interface": {
+    "displayName": "Heptabase"
+  },
+  "plugins": [
+    {
+      "name": "heptabase",
+      "source": {
+        "source": "local",
+        "path": "./plugins/heptabase"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

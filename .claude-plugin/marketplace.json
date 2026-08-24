@@ -1,0 +1,18 @@
+{
+  "name": "heptabase-agent-plugins",
+  "owner": {
+    "name": "Hepta Platforms, Inc.",
+    "url": "https://heptabase.com"
+  },
+  "metadata": {
+    "description": "Official Heptabase plugins for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "heptabase",
+      "source": "./plugins/heptabase",
+      "description": "Search, read, create, and update knowledge in Heptabase",
+      "homepage": "https://support.heptabase.com"
+    }
+  ]
+}

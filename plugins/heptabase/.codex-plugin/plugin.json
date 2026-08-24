@@ -1,0 +1,43 @@
+{
+  "name": "heptabase",
+  "version": "0.1.0",
+  "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server.",
+  "author": {
+    "name": "Hepta Platforms, Inc.",
+    "url": "https://heptabase.com"
+  },
+  "homepage": "https://support.heptabase.com",
+  "repository": "https://github.com/heptameta/heptabase-agent-plugins",
+  "keywords": [
+    "heptabase",
+    "knowledge management",
+    "notes",
+    "whiteboards",
+    "mcp"
+  ],
+  "interface": {
+    "displayName": "Heptabase",
+    "shortDescription": "Search and update your notes",
+    "longDescription": "Connect your Heptabase knowledge base. Search and read cards, journals, PDFs, tags, databases, and whiteboards; create and edit notes; update properties; and place existing objects on whiteboards.",
+    "developerName": "Hepta Platforms, Inc.",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://heptabase.com",
+    "privacyPolicyURL": "https://heptabase.com/privacy_policy",
+    "termsOfServiceURL": "https://heptabase.com/terms_of_service",
+    "defaultPrompt": [
+      "Find my recent notes about a topic and summarize the key ideas.",
+      "Create a card in Heptabase from this conversation.",
+      "Update a card's status property in Heptabase."
+    ],
+    "composerIcon": "./assets/heptabase.png",
+    "logo": "./assets/heptabase.png",
+    "screenshots": []
+  },
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json"
+}
