@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "heptabase": {
+      "type": "http",
+      "url": "https://api.heptabase.com/mcp"
+    }
+  }
+}

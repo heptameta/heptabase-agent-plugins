@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "heptabase",
+  "version": "0.1.0",
+  "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server.",
+  "author": {
+    "name": "Hepta Platforms, Inc.",
+    "url": "https://heptabase.com"
+  },
+  "homepage": "https://support.heptabase.com",
+  "repository": "https://github.com/heptameta/heptabase-agent-plugins",
+  "keywords": [
+    "heptabase",
+    "knowledge management",
+    "notes",
+    "whiteboards",
+    "mcp"
+  ]
+}

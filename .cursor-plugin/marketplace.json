@@ -1,0 +1,16 @@
+{
+  "name": "heptabase-agent-plugins",
+  "owner": {
+    "name": "Hepta Platforms, Inc."
+  },
+  "metadata": {
+    "description": "Official Heptabase plugins for Cursor"
+  },
+  "plugins": [
+    {
+      "name": "heptabase",
+      "source": "./plugins/heptabase",
+      "description": "Search, read, create, and update knowledge in Heptabase"
+    }
+  ]
+}
