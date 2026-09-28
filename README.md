@@ -41,7 +41,22 @@ Then install the plugin:
 
 ### Cursor
 
-The plugin follows the portable [Agent Plugins specification](https://agent-plugins.org/) supported by Cursor. Public installation will be documented here when the plugin is published to the Cursor Marketplace.
+The plugin follows the portable [Agent Plugins specification](https://agent-plugins.org/) supported by Cursor. Public marketplace installation will be documented after publication.
+
+To preview the package from GitHub:
+
+1. Open **Customize → Plugins → Add → From GitHub Repository**.
+2. Enter `https://github.com/heptameta/heptabase-agent-plugins`, choose **User** scope, and import it.
+3. Find the `heptabase` package from this repository and click **Add**. If the older CLI package is also installed, choose the entry whose description mentions the hosted MCP server.
+4. Open the installed package and authenticate its Heptabase MCP connection.
+
+The GitHub import, OAuth authorization, search, create, read, and update workflows were verified in a live Cursor session on September 25, 2026 using a disposable note.
+
+For local development, Cursor also documents copying the package into `~/.cursor/plugins/local/heptabase/` and reloading the app. The destination must contain `plugin.json` and `mcp.json` directly, and local imports must be allowed by your team's settings. An installed marketplace plugin with the same name takes precedence. See [Cursor's local plugin instructions](https://cursor.com/docs/plugins#test-plugins-locally).
+
+### Grok Bot
+
+Grok Bot [supports the same MCP servers, plugins, and skills as Cursor](https://x.ai/bot/guides/grok-bot-101). After the personal Cursor import and installation above, the hosted Heptabase plugin appeared under **Marketplace → Your plugins**. Open the entry from this repository and complete its Heptabase authorization.
 
 ## Repository layout
 
