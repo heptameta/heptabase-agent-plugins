@@ -1,5 +1,6 @@
 {
   "name": "heptabase",
+  "displayName": "Heptabase",
   "version": "0.1.1",
   "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server.",
   "author": {
@@ -8,6 +9,12 @@
   },
   "homepage": "https://support.heptabase.com",
   "repository": "https://github.com/heptameta/heptabase-agent-plugins",
+  "license": "MIT",
+  "icon": "./assets/heptabase.png",
+  "documentationUrl": "https://support.heptabase.com/en/articles/12679581-heptabase-mcp",
+  "supportUrl": "https://support.heptabase.com",
+  "privacyPolicyUrl": "https://heptabase.com/privacy_policy",
+  "termsOfServiceUrl": "https://heptabase.com/terms_of_service",
   "keywords": [
     "heptabase",
     "knowledge management",

@@ -64,13 +64,18 @@ Grok Bot [supports the same MCP servers, plugins, and skills as Cursor](https://
 .agents/plugins/marketplace.json    Codex marketplace
 .claude-plugin/marketplace.json     Claude Code marketplace
 .cursor-plugin/marketplace.json     Cursor marketplace
+LICENSE                             MIT license for this repository
 plugins/heptabase/plugin.json       Portable Agent Plugins manifest
 plugins/heptabase/mcp.json          Portable MCP configuration
+plugins/heptabase/README.md         Plugin description for users and listings
+plugins/heptabase/LICENSE           MIT license shipped with the plugin
 plugins/heptabase/.codex-plugin/    Codex-specific manifest
-plugins/heptabase/.claude-plugin/   Claude Code-specific manifest
+plugins/heptabase/.claude-plugin/   Claude Code-specific manifest and listing fields
 ```
 
 The portable core contains only the shared plugin identity, MCP connection, and future skills. Host-specific manifests add distribution metadata that is not part of the Agent Plugins standard. OpenAI's app registration is declared separately in `.app.json`; other hosts ignore it.
+
+The plugin folder ships its own `README.md` and `LICENSE`, because hosts install only that folder.
 
 ## Releases
 
@@ -90,10 +95,14 @@ Run the repository checks before opening a pull request:
 python3 scripts/validate.py
 ```
 
-The checks validate the portable and host-specific manifests, shared identity and version, marketplace paths, MCP endpoint, and referenced assets.
+The checks validate the portable and host-specific manifests, shared identity, version, and license, the license files, the plugin README, the Claude Code listing fields, marketplace paths, MCP endpoint, and referenced assets.
 
 ## Support and policies
 
 - [Heptabase Support](https://support.heptabase.com)
 - [Privacy Policy](https://heptabase.com/privacy_policy)
 - [Terms of Service](https://heptabase.com/terms_of_service)
+
+## License
+
+The files in this repository are licensed under the [MIT License](LICENSE). Use of Heptabase itself is governed by the [Terms of Service](https://heptabase.com/terms_of_service).

@@ -1,0 +1,5 @@
+# OS files that the Claude plugin directory rejects
+.DS_Store
+Thumbs.db
+desktop.ini
+__MACOSX/

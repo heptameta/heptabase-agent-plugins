@@ -8,6 +8,7 @@
   },
   "homepage": "https://support.heptabase.com",
   "repository": "https://github.com/heptameta/heptabase-agent-plugins",
+  "license": "MIT",
   "keywords": [
     "heptabase",
     "knowledge management",
