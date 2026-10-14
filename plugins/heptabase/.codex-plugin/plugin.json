@@ -1,6 +1,6 @@
 {
   "name": "heptabase",
-  "version": "0.2.0",
+  "version": "1.2.0",
   "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server.",
   "author": {
     "name": "Hepta Platforms, Inc.",
@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "Heptabase",
     "shortDescription": "Search and update your notes",
-    "longDescription": "Connect your Heptabase knowledge base. Search and read cards, journals, PDFs, tags, databases, and whiteboards; create and edit notes; update properties; and place existing objects on whiteboards.",
+    "longDescription": "Connect your Heptabase knowledge base. Search and read cards, journals, PDFs, tags, databases, and whiteboards; view selected cards in an interactive reader; create and edit notes; update properties; and place existing objects on whiteboards.\n\nThe plugin also includes Heptabase Explainer Studio, a skill that turns teaching material, such as lecture notes, a paper, or a codebase, into narrated, animated explainer videos. The videos are made on your computer, so Explainer Studio works in Codex and in local threads of the ChatGPT desktop app, not in ChatGPT on the web or on mobile. The first time, it asks before installing its tools (about 1.5 GB). It needs no Heptabase account.",
     "developerName": "Hepta Platforms, Inc.",
     "category": "Productivity",
     "capabilities": [
@@ -28,6 +28,7 @@
       "Interactive"
     ],
     "websiteURL": "https://heptabase.com",
+    "supportURL": "https://support.heptabase.com",
     "privacyPolicyURL": "https://heptabase.com/privacy_policy",
     "termsOfServiceURL": "https://heptabase.com/terms_of_service",
     "defaultPrompt": [
