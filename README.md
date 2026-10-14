@@ -2,7 +2,7 @@
 
 Official agent plugins for connecting AI agents to [Heptabase](https://heptabase.com).
 
-The repository packages one portable Heptabase integration with the small host-specific adapters required for distribution. The current plugin connects to Heptabase's hosted MCP server and authenticates through the standard OAuth flow. It does not require a local server, API key, or separate Heptabase CLI.
+The repository packages one portable Heptabase integration with the small host-specific adapters required for distribution. The plugin connects to Heptabase's hosted MCP server and authenticates through the standard OAuth flow; that connection does not require a local server, API key, or separate Heptabase CLI. It also carries the Explainer Studio skill, which makes explainer videos on your computer and needs no Heptabase account.
 
 ## What the plugin can do
 
@@ -10,6 +10,7 @@ The repository packages one portable Heptabase integration with the small host-s
 - Create and edit notes
 - Update properties
 - Place existing objects on whiteboards
+- Turn teaching material into narrated, animated explainer videos with [Heptabase Explainer Studio](https://github.com/heptameta/heptabase-explainer-studio)
 
 The exact tools available to an agent are provided by the hosted MCP server at `https://api.heptabase.com/mcp`.
 
@@ -23,7 +24,7 @@ Add this repository as a marketplace:
 codex plugin marketplace add heptameta/heptabase-agent-plugins
 ```
 
-Then open `/plugins` and install `heptabase` from the `heptabase-agent-plugins` marketplace. A browser window will open for Heptabase sign-in and authorization.
+Then open `/plugins` and install `heptabase` from the `heptabase-agent-plugins` marketplace. The first time your agent uses Heptabase, a browser window opens for sign-in and authorization.
 
 ### Claude Code
 
@@ -67,13 +68,14 @@ Grok Bot [supports the same MCP servers, plugins, and skills as Cursor](https://
 LICENSE                             MIT license for this repository
 plugins/heptabase/plugin.json       Portable Agent Plugins manifest
 plugins/heptabase/mcp.json          Portable MCP configuration
+plugins/heptabase/skills/           Skills, including Explainer Studio
 plugins/heptabase/README.md         Plugin description for users and listings
 plugins/heptabase/LICENSE           MIT license shipped with the plugin
 plugins/heptabase/.codex-plugin/    Codex-specific manifest
 plugins/heptabase/.claude-plugin/   Claude Code-specific manifest and listing fields
 ```
 
-The portable core contains only the shared plugin identity, MCP connection, and future skills. Host-specific manifests add distribution metadata that is not part of the Agent Plugins standard. OpenAI's app registration is declared separately in `.app.json`; other hosts ignore it.
+The portable core contains only the shared plugin identity, MCP connection, and skills. Host-specific manifests add distribution metadata that is not part of the Agent Plugins standard. OpenAI's app registration is declared separately in `.app.json`; other hosts ignore it.
 
 The plugin folder ships its own `README.md` and `LICENSE`, because hosts install only that folder.
 
