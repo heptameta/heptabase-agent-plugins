@@ -4,17 +4,16 @@
 #   powershell -ExecutionPolicy Bypass -File install.ps1      (from the skill folder)
 #   irm <url>/install.ps1 | iex
 #
-# $env:EXPLAINER_STUDIO_SOURCE overrides where the package comes from, for example a local checkout during
-# development. $env:UV_NO_MODIFY_PATH = 1 leaves the user PATH alone.
+# $env:EXPLAINER_STUDIO_SOURCE overrides where the package comes from (a folder or a git URL), for testing this
+# script. $env:UV_NO_MODIFY_PATH = 1 leaves the user PATH alone.
 
-$Repo = 'heptameta/heptabase-explainer-studio'  # written by scripts/release.py
-$DefaultSource = ''  # empty: the latest release; a dev build's snapshot writes its folder here
+$Repo = 'heptameta/heptabase-explainer-studio'  # where the releases are
 $script:Problem = $null
 
 function Stop-Install([string] $Message) { $script:Problem = $Message }
 
 function Install-ExplainerStudio {
-    $source = if ($env:EXPLAINER_STUDIO_SOURCE) { $env:EXPLAINER_STUDIO_SOURCE } else { $DefaultSource }
+    $source = $env:EXPLAINER_STUDIO_SOURCE  # empty: the latest release
 
     Write-Host "`n== uv (Python tool manager)"
     $candidates = @("$env:USERPROFILE\.local\bin\uv.exe", "$env:USERPROFILE\.cargo\bin\uv.exe")

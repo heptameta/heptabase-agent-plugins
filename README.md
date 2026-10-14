@@ -99,6 +99,8 @@ python3 scripts/validate.py
 
 The checks validate the portable and host-specific manifests, shared identity, version, and license, the license files, the plugin README, the Claude Code listing fields, marketplace paths, MCP endpoint, and referenced assets.
 
+To try a change in Claude Code, start a session with `claude --plugin-dir plugins/heptabase`. For that session, it loads this folder in place of the installed plugin. To try the Explainer Studio skill with an unreleased `explainer-studio` command, first install that command as a dev build with `scripts/use_dev_build.py` in [heptameta/heptabase-explainer-studio](https://github.com/heptameta/heptabase-explainer-studio): the skill's `doctor` then finds it, and the install scripts do not run.
+
 ## Support and policies
 
 - [Heptabase Support](https://support.heptabase.com)
