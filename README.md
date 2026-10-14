@@ -89,7 +89,7 @@ The plugin package uses Semantic Versioning. Keep the version in `plugin.json`, 
 
 Installed plugins are cached, so changing files on `main` without bumping the explicit version is not a release. Keep the hosted MCP server compatible with previously released plugin versions during a rollout. Public marketplace updates are reviewed and published separately by each host.
 
-Claude's plugin directory picks up new commits on `main` by itself. The OpenAI plugin directory takes a ZIP: build it from the released commit with `python3 scripts/package_openai_plugin.py`, then upload `dist/heptabase-<version>-openai.zip` to the existing Heptabase plugin in the OpenAI Platform (**Plugins → Heptabase → Upload new version**). The script leaves out `.app.json` and the `apps` field, which the directory does not accept. The listing text, links, and icon come from `.codex-plugin/plugin.json`. Changes to the hosted MCP tools need no upload, because OpenAI scans the server.
+Claude's plugin directory picks up new commits on `main` by itself. The OpenAI plugin directory takes a ZIP: build it from the released commit with `python3 scripts/package_openai_plugin.py`, then upload `dist/heptabase-<version>-openai.zip` to the existing Heptabase plugin in the OpenAI Platform (**Plugins → Heptabase → Upload new version**). The script leaves out `.app.json` and the `apps` field, which the directory does not accept, and gives the manifests the plugin name that the directory requires (`app-6a8df1b568f08191af42b4e26e012044`) in place of `heptabase`. The listing text, links, and icon come from `.codex-plugin/plugin.json`. Changes to the hosted MCP tools need no upload, because OpenAI scans the server.
 
 ## Development
 

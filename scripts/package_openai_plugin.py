@@ -4,9 +4,14 @@
     python3 scripts/package_openai_plugin.py              # the current commit
     python3 scripts/package_openai_plugin.py --ref main
 
-The ZIP holds the plugin folder as committed at the ref, without the OpenAI app registration (`.app.json` and the
-Codex manifest's `apps` field that points to it): the directory does not accept a package that declares one. It is
-written to dist/heptabase-<version>-openai.zip.
+The ZIP holds the plugin folder as committed at the ref, with two changes that the directory requires:
+
+- no OpenAI app registration (`.app.json` and the Codex manifest's `apps` field that points to it), because the
+  directory does not accept a package that declares one;
+- the plugin name that the directory gave the Heptabase plugin, in place of `heptabase`, because an upload must
+  match the existing plugin.
+
+It is written to dist/heptabase-<version>-openai.zip.
 """
 
 import argparse
@@ -21,8 +26,9 @@ from pathlib import Path
 
 REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
 PLUGIN_DIR = "plugins/heptabase"
+OPENAI_PLUGIN_NAME = "app-6a8df1b568f08191af42b4e26e012044"
 APP_REGISTRATION_PATH = ".app.json"
-CODEX_MANIFEST_PATH = ".codex-plugin/plugin.json"
+MANIFEST_PATHS = ("plugin.json", ".codex-plugin/plugin.json", ".claude-plugin/plugin.json")
 OUTPUT_DIR = REPOSITORY_ROOT / "dist"
 REGULAR_FILE_TYPE = 0o100000
 
@@ -46,12 +52,14 @@ def read_plugin_files(ref: str) -> dict[str, tuple[bytes, int]]:
     return files
 
 
-def remove_app_registration(files: dict[str, tuple[bytes, int]]) -> None:
+def convert_to_openai_package(files: dict[str, tuple[bytes, int]]) -> None:
     files.pop(APP_REGISTRATION_PATH, None)
-    content, mode = files[CODEX_MANIFEST_PATH]
-    manifest = json.loads(content)
-    manifest.pop("apps", None)
-    files[CODEX_MANIFEST_PATH] = ((json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode(), mode)
+    for path in MANIFEST_PATHS:
+        content, mode = files[path]
+        manifest = json.loads(content)
+        manifest["name"] = OPENAI_PLUGIN_NAME
+        manifest.pop("apps", None)
+        files[path] = ((json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode(), mode)
 
 
 def write_zip(files: dict[str, tuple[bytes, int]], zip_path: Path) -> None:
@@ -72,7 +80,7 @@ def main() -> None:
     arguments = parser.parse_args()
     try:
         files = read_plugin_files(arguments.ref)
-        remove_app_registration(files)
+        convert_to_openai_package(files)
     except ValueError as error:
         print(error, file=sys.stderr)
         sys.exit(1)
