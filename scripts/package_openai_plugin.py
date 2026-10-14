@@ -2,7 +2,7 @@
 """Build the ZIP to upload to the OpenAI plugin directory.
 
     python3 scripts/package_openai_plugin.py              # the current commit
-    python3 scripts/package_openai_plugin.py --ref main
+    python3 scripts/package_openai_plugin.py --ref main --release-notes notes.md
 
 The ZIP holds the plugin folder as committed at the ref, with two changes that the directory requires:
 
@@ -11,8 +11,14 @@ The ZIP holds the plugin folder as committed at the ref, with two changes that t
 - the plugin name that the directory gave the Heptabase plugin, in place of `heptabase`, because an upload must
   match the existing plugin.
 
+`--release-notes` adds the text of a file as the version's release notes, which the reviewers read. The submission
+form has no other place for a note to them, such as why a finding of the automated checks is expected. The notes
+belong to one version, so they are not committed.
+
 It is written to dist/heptabase-<version>-openai.zip.
 """
+
+from __future__ import annotations
 
 import argparse
 import io
@@ -28,7 +34,8 @@ REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
 PLUGIN_DIR = "plugins/heptabase"
 OPENAI_PLUGIN_NAME = "app-6a8df1b568f08191af42b4e26e012044"
 APP_REGISTRATION_PATH = ".app.json"
-MANIFEST_PATHS = ("plugin.json", ".codex-plugin/plugin.json", ".claude-plugin/plugin.json")
+CODEX_MANIFEST_PATH = ".codex-plugin/plugin.json"
+MANIFEST_PATHS = ("plugin.json", CODEX_MANIFEST_PATH, ".claude-plugin/plugin.json")
 OUTPUT_DIR = REPOSITORY_ROOT / "dist"
 REGULAR_FILE_TYPE = 0o100000
 
@@ -52,13 +59,17 @@ def read_plugin_files(ref: str) -> dict[str, tuple[bytes, int]]:
     return files
 
 
-def convert_to_openai_package(files: dict[str, tuple[bytes, int]]) -> None:
+def convert_to_openai_package(files: dict[str, tuple[bytes, int]], release_notes: str | None) -> None:
     files.pop(APP_REGISTRATION_PATH, None)
     for path in MANIFEST_PATHS:
         content, mode = files[path]
         manifest = json.loads(content)
         manifest["name"] = OPENAI_PLUGIN_NAME
         manifest.pop("apps", None)
+        if path == CODEX_MANIFEST_PATH and release_notes is not None:
+            # OpenAI reads its settings from the Codex manifest when the portable manifest has none
+            openai_settings = manifest.setdefault("extensions", {}).setdefault("com.openai", {})
+            openai_settings.setdefault("publication", {})["release_notes"] = release_notes
         files[path] = ((json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode(), mode)
 
 
@@ -77,11 +88,13 @@ def write_zip(files: dict[str, tuple[bytes, int]], zip_path: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--ref", default="HEAD", help="the commit, branch or tag to package (default: HEAD)")
+    parser.add_argument("--release-notes", type=Path, help="a text file with this version's release notes")
     arguments = parser.parse_args()
     try:
         files = read_plugin_files(arguments.ref)
-        convert_to_openai_package(files)
-    except ValueError as error:
+        release_notes = arguments.release_notes.read_text(encoding="utf-8").strip() if arguments.release_notes else None
+        convert_to_openai_package(files, release_notes)
+    except (ValueError, OSError) as error:
         print(error, file=sys.stderr)
         sys.exit(1)
 
