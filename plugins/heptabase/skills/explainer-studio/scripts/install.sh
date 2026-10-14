@@ -5,12 +5,12 @@
 #   sh install.sh                      (from the skill folder)
 #   curl -fsSL <url>/install.sh | sh
 #
-# EXPLAINER_STUDIO_SOURCE overrides where the package comes from, for example a local checkout during development.
+# EXPLAINER_STUDIO_SOURCE overrides where the package comes from (a folder or a git URL), for testing this script.
 # UV_NO_MODIFY_PATH=1 leaves shell profiles alone.
 set -eu
 
-REPO="heptameta/heptabase-explainer-studio"  # written by scripts/release.py
-SOURCE="${EXPLAINER_STUDIO_SOURCE:-}"  # empty: the latest release; a dev build's snapshot writes its folder here
+REPO="heptameta/heptabase-explainer-studio"  # where the releases are
+SOURCE="${EXPLAINER_STUDIO_SOURCE:-}"  # empty: the latest release
 
 step() { printf '\n== %s\n' "$1"; }
 fail() { printf 'error: %s\n' "$1" >&2; exit 1; }
