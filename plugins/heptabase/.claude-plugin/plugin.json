@@ -2,7 +2,7 @@
   "name": "heptabase",
   "displayName": "Heptabase",
   "version": "0.2.0",
-  "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server.",
+  "description": "Connect AI agents to Heptabase to search, read, create, and update knowledge through the hosted MCP server, and make narrated explainer videos from your own material with Explainer Studio.",
   "author": {
     "name": "Hepta Platforms, Inc.",
     "url": "https://heptabase.com"
