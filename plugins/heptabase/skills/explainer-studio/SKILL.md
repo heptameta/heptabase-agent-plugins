@@ -15,8 +15,9 @@ version that runs.
   in English; that is no reason to switch.
 - Never ask for, read or print an API key. When one is needed, the guide says how the user enters it in their own
   terminal.
-- Making videos runs programs on this computer. Without a shell (ChatGPT on the web, Claude chat), tell the user to
-  use Claude Code or Codex on their computer instead.
+- Videos are made on the user's own computer. When you run somewhere else, such as a cloud container (ChatGPT or
+  Claude on the web, Codex cloud, Claude Code on the web), or have no shell, install and run nothing: tell the user
+  to make videos with Claude Code or Codex on their computer.
 
 ## Get the command ready
 

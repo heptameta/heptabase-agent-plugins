@@ -183,10 +183,11 @@ def validate_claude_listing_fields() -> None:
         "interface"
     )
     if not isinstance(codex_interface, dict) or (
-        manifest["privacyPolicyUrl"] != codex_interface.get("privacyPolicyURL")
+        manifest["supportUrl"] != codex_interface.get("supportURL")
+        or manifest["privacyPolicyUrl"] != codex_interface.get("privacyPolicyURL")
         or manifest["termsOfServiceUrl"] != codex_interface.get("termsOfServiceURL")
     ):
-        raise ValueError("Claude and Codex manifests disagree on privacy or terms URLs")
+        raise ValueError("Claude and Codex manifests disagree on support, privacy or terms URLs")
 
 
 def validate_no_placeholders() -> None:

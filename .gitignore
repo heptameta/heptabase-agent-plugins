@@ -3,3 +3,6 @@
 Thumbs.db
 desktop.ini
 __MACOSX/
+
+# OpenAI directory ZIPs from scripts/package_openai_plugin.py
+dist/
